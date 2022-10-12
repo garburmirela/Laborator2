@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<div ng-app="myApp"
+     ng-controller="myCtrl"
+     ng-init="students = [
+      {
+        nume: 'Garbur',
+        prenume: 'Mirela',
+        nota: 8,
+      },
+      {
+        nume: 'Groian',
+        prenume: 'Lidia',
+        nota: 9,
+      },
+      {
+        nume: 'Pavalachi',
+        prenume: 'Alina',
+        nota: 8,
+      },
+      {
+        nume: 'Buga',
+        prenume: 'Cristian',
+        nota: 6,
+      },
+      {
+        nume: 'Bostan',
+        prenume: 'Marius',
+        nota: 7,
+      },
+    ]">
+
+  <div class="student-container">
+    <p>1. De creat lista studentilor (nume, prenume, nota). De organizat cautarea studentului X. X de dat prin input</p>
+    <p>
+      Search: <input type="text" ng-model="search">
+    </p>
+    <div class="student" ng-repeat="(key, value) in students | filter : search">
+      <span>
+      <h5>{{value.nume}}</h5>
+      <h5>{{value.prenume}}</h5>
+      </span>
+      <h5>{{value.nota}}</h5>
+    </div>
+  </div>
+
+  <div class="student-container">
+    <p>2. Serviciu care ridica la patrat valoarea X data din input</p>
+    <p>
+      x = <input type="number" ng-model="x">
+    </p>
+    <button ng-click="getSquare(x)">Get Square</button>
+    <h4 ng-if="result">Service square = {{result}}</h4>
+  </div>
+
+  <div class="student-container">
+    <p>3. De creat un obiect select din lista studentilor. De afisat alegerea utilizatorului</p>
+    <p>
+      Select a student:
+      <select ng-model="selectedStudent">
+        <option ng-repeat="(index, value) in students" ng-value="value">{{value.nume}} {{value.prenume}}</option>
+      </select>
+    <div class="student">
+      <span>
+      <h5>{{selectedStudent.nume}}</h5>
+      <h5>{{selectedStudent.prenume}}</h5>
+      </span>
+      <h5>{{selectedStudent.nota}}</h5>
+    </div>
+    </p>
+  </div>
+
+  <div class="student-container" ng-init="productResult= 0">
+    <p>4. De dat a si b din input. Dupa click afisati produsul lor</p>
+    <p>
+      a = <input type="number" ng-model="a">
+    </p>
+    <p>
+      b = <input type="number" ng-model="b">
+    </p>
+    <button ng-click="getProduct(a,b)">Get Product</button>
+    <p>Result = {{productResult}}</p>
+  </div>
+
+  <div class="student-container">
+    <p>5. De dat a si b din input. Determinati daca a se imparte la b fara rest</p>
+    <p>
+      a = <input type="number" ng-model="c">
+    </p>
+    <p>
+      b = <input type="number" ng-model="d">
+    </p>
+    <p ng-if="c % d === 0">Result = {{c / d}}</p>
+    <p ng-if="(c % d !== 0) && c && d">Impartirea este cu rest</p>
+  </div>
+
+  <div class="student-container">
+    <p>6. De afisat lista studentilor In forma de tabel</p>
+    <table border="1">
+      <tr>
+        <td>Nume</td>
+        <td>Prenume</td>
+        <td>Nota</td>
+      </tr>
+      <tr ng-repeat="(index, value) in students">
+        <td>{{value.nume}}</td>
+        <td>{{value.prenume}}</td>
+        <td>{{value.nota}}</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="student-container">
+    <p>7. Aranjati descrescator lista studentilor dupa nota</p>
+    <div class="student" ng-repeat="(key, value) in students | orderBy : '-nota'">
+      <span>
+      <h5>{{value.nume}}</h5>
+      <h5>{{value.prenume}}</h5>
+      </span>
+      <h5>{{value.nota}}</h5>
+    </div>
+  </div>
+
+</div>
+</body>
+<script src="script.module.js"></script>
+</html>
